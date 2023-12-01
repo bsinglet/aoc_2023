@@ -6,4 +6,4 @@ Advent of Code 2023
 
 Days completed so far:
 
-- [https://github.com/bsinglet/aoc_2023/blob/main/day01.py](Day 1)
+- [Day 01](https://github.com/bsinglet/aoc_2023/blob/main/day01.py)
