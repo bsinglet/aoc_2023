@@ -36,10 +36,20 @@ def day_02_part_1(puzzle_input: list) -> int:
     return possible_games
 
 
+def day_02_part_2(puzzle_input: list) -> int:
+    parsed_games = parse_games(puzzle_input)
+    power_sum = 0
+    for each_game in parsed_games:
+        power_sum += each_game[1]['red'] * each_game[1]['green'] * each_game[1]['blue']
+    return power_sum
+
+
 def main() -> None:
     puzzle_input = get_input_data("input_02.txt")
     part_1 = day_02_part_1(puzzle_input=puzzle_input)
     print(f"The sum of the IDs of the possible games is {part_1}")
+    part_2 = day_02_part_2(puzzle_input=puzzle_input)
+    print(f"The sum of the power of these sets is {part_2}")
 
 
 if __name__ == '__main__':
