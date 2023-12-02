@@ -1,7 +1,7 @@
 #!/usr/bin/python
 __author__ = 'Benjamin M. Singleton'
 __date__ = '02 December 2023'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 import unittest
 from day02 import *
