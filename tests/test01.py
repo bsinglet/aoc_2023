@@ -6,6 +6,7 @@ __version__ = '0.1.0'
 import unittest
 from day01 import *
 
+
 class TestDay01(unittest.TestCase):
 
     def test_get_digits_part_2_01(self):

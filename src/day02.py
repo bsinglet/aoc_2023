@@ -45,7 +45,7 @@ def day_02_part_2(puzzle_input: list) -> int:
 
 
 def main() -> None:
-    puzzle_input = get_input_data("input_02.txt")
+    puzzle_input = get_input_data("../inputs/input_02.txt")
     part_1 = day_02_part_1(puzzle_input=puzzle_input)
     print(f"The sum of the IDs of the possible games is {part_1}")
     part_2 = day_02_part_2(puzzle_input=puzzle_input)

@@ -51,7 +51,7 @@ def day_03_part_1(puzzle_input: list) -> int:
 
 
 def main() -> None:
-    puzzle_input = get_input_data("input_03.txt")
+    puzzle_input = get_input_data("../inputs/input_03.txt")
     part_1 = day_03_part_1(puzzle_input=puzzle_input)
     print(f"The sum of all the part numbers in the engine schematic is {part_1}")
 
