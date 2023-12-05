@@ -35,17 +35,23 @@ def get_neighbors(x: int, y: int) -> list:
             (x, y+1)]
 
 
-def day_03_part_1(puzzle_input: list) -> int:
-    part_numbers = list()
-    locations = get_all_locations(puzzle_input)
+def get_symbol_locations(puzzle_input: list) -> list:
     y = 0
+    symbol_locations = list()
     for each_line in puzzle_input:
         for each_symbol in re.finditer("[^\d\.]", each_line):
-            x = each_symbol.start()
-            for each_neighbor in get_neighbors(x, y):
-                if each_neighbor in locations.keys():
-                    part_numbers.append(int(locations[each_neighbor]))
+            symbol_locations.append((each_symbol.start(), y))
         y += 1
+    return symbol_locations
+
+
+def day_03_part_1(puzzle_input: list) -> int:
+    part_numbers = list()
+    locations = get_all_locations(puzzle_input=puzzle_input)
+    for x, y in get_symbol_locations(puzzle_input=puzzle_input):
+        for each_neighbor in get_neighbors(x, y):
+            if each_neighbor in locations.keys():
+                part_numbers.append(int(locations[each_neighbor]))
     part_numbers = list(set(part_numbers))
     return sum(part_numbers)
 
