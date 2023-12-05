@@ -1,7 +1,7 @@
 #!/usr/bin/python
 __author__ = 'Benjamin M. Singleton'
 __date__ = '03 December 2023'
-__version__ = '0.1.0'
+__version__ = '0.1.3'
 
 import re
 
@@ -11,6 +11,18 @@ def get_input_data(filename: str) -> list:
         puzzle_input = my_file.read()
     puzzle_input = [x.strip() for x in puzzle_input.strip().split('\n')]
     return puzzle_input
+
+
+def get_unique_symbols(puzzle_input: list) -> list:
+    result = list()
+    for each_line in puzzle_input:
+        s = each_line.replace('.', '')
+        for x in range(0, 10):
+            s = s.replace(str(x), '')
+        s = list(set([y for y in s]))
+        result += s
+    result = list(set(result))
+    return result
 
 
 def get_all_locations(puzzle_input) -> dict:
@@ -37,10 +49,12 @@ def get_neighbors(x: int, y: int) -> list:
 
 def get_symbol_locations(puzzle_input: list) -> list:
     y = 0
+    non_symbols = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.']
     symbol_locations = list()
     for each_line in puzzle_input:
-        for each_symbol in re.finditer("[^0-9\\.]", each_line):
-            symbol_locations.append((each_symbol.start(), y))
+        for x in range(0, len(each_line)):
+            if each_line[x] not in non_symbols:
+                symbol_locations.append((x, y))
         y += 1
     return symbol_locations
 
