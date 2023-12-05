@@ -1,7 +1,7 @@
 #!/usr/bin/python
 __author__ = 'Benjamin M. Singleton'
-__date__ = '03 December 2023'
-__version__ = '0.1.3'
+__date__ = '05 December 2023'
+__version__ = '0.1.4'
 
 import re
 
@@ -25,15 +25,21 @@ def get_unique_symbols(puzzle_input: list) -> list:
     return result
 
 
-def get_all_locations(puzzle_input) -> dict:
+def get_all_parts(puzzle_input) -> list:
     y = 0
-    locations = dict()
+    symbol_locations = get_symbol_locations(puzzle_input=puzzle_input)
+    parts = list()
     for each_line in puzzle_input:
         for each_number in re.finditer("[0-9]+", each_line):
+            number_matched = False
             for x in range(each_number.start(), each_number.end()):
-                locations[(x, y)] = each_number[0]
+                for each_neighbor in get_neighbors(x, y):
+                    if each_neighbor in symbol_locations:
+                        number_matched = True
+            if number_matched:
+                parts.append(int(each_number[0]))
         y += 1
-    return locations
+    return parts
 
 
 def get_neighbors(x: int, y: int) -> list:
@@ -60,13 +66,7 @@ def get_symbol_locations(puzzle_input: list) -> list:
 
 
 def day_03_part_1(puzzle_input: list) -> int:
-    part_numbers = list()
-    locations = get_all_locations(puzzle_input=puzzle_input)
-    for x, y in get_symbol_locations(puzzle_input=puzzle_input):
-        for each_neighbor in get_neighbors(x, y):
-            if each_neighbor in locations.keys():
-                part_numbers.append(int(locations[each_neighbor]))
-    part_numbers = list(set(part_numbers))
+    part_numbers = get_all_parts(puzzle_input=puzzle_input)
     return sum(part_numbers)
 
 
