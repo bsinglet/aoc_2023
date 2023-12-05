@@ -17,7 +17,7 @@ def get_all_locations(puzzle_input) -> dict:
     y = 0
     locations = dict()
     for each_line in puzzle_input:
-        for each_number in re.finditer("\d+", each_line):
+        for each_number in re.finditer("[0-9]+", each_line):
             for x in range(each_number.start(), each_number.end()):
                 locations[(x, y)] = each_number[0]
         y += 1
@@ -39,7 +39,7 @@ def get_symbol_locations(puzzle_input: list) -> list:
     y = 0
     symbol_locations = list()
     for each_line in puzzle_input:
-        for each_symbol in re.finditer("[^\d\.]", each_line):
+        for each_symbol in re.finditer("[^0-9\\.]", each_line):
             symbol_locations.append((each_symbol.start(), y))
         y += 1
     return symbol_locations
@@ -57,7 +57,7 @@ def day_03_part_1(puzzle_input: list) -> int:
 
 
 def main() -> None:
-    puzzle_input = get_input_data("../inputs/input_03.txt")
+    puzzle_input = get_input_data("inputs/input_03.txt")
     part_1 = day_03_part_1(puzzle_input=puzzle_input)
     print(f"The sum of all the part numbers in the engine schematic is {part_1}")
 

@@ -83,7 +83,7 @@ def day_01_part_2(puzzle_input: list) -> int:
 
 
 def main() -> None:
-    puzzle_input = get_input_data("../inputs/input_01.txt")
+    puzzle_input = get_input_data("inputs/input_01.txt")
     part_1 = day_01_part_1(puzzle_input=puzzle_input)
     print(f"The sum of all calibration values is {part_1}")
     part_2 = day_01_part_2(puzzle_input=puzzle_input)
