@@ -1,15 +1,15 @@
 #!/usr/bin/python
 __author__ = 'Benjamin M. Singleton'
 __date__ = '01 December 2023'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 import unittest
-from day03 import *
+from lib import day03
 
 
 class TestDay03(unittest.TestCase):
     def test_get_all_locations(self):
-        self.assertEqual(get_all_locations(get_input_data('../inputs/input_03_short.txt')),
+        self.assertEqual(day03.get_all_locations(day03.get_input_data('../inputs/input_03_short.txt')),
                          {(0, 0): '467',
                           (1, 0): '467',
                           (2, 0): '467',
@@ -41,7 +41,7 @@ class TestDay03(unittest.TestCase):
                           })
         
     def test_get_neighbors_01(self):
-        self.assertEqual(get_neighbors(0, 0),
+        self.assertEqual(day03.get_neighbors(0, 0),
                          [(-1, 0),
                           (1, 0),
                           (-1, -1),
@@ -52,10 +52,10 @@ class TestDay03(unittest.TestCase):
                           (0, 1)])
 
     def test_day_03_part_1_short(self):
-        self.assertEqual(day_03_part_1(get_input_data('../inputs/input_03_short.txt')), 4361)
+        self.assertEqual(day03.day_03_part_1(day03.get_input_data('inputs/input_03_short.txt')), 4361)
 
     def test_day_03_part_1_full(self):
-        self.assertEqual(day_03_part_1(get_input_data('../inputs/input_03.txt')), 0)
+        self.assertEqual(day03.day_03_part_1(day03.get_input_data('inputs/input_03.txt')), 0)
 
 
 if __name__ == '__main__':
