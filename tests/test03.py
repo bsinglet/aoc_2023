@@ -69,7 +69,7 @@ class TestDay03(unittest.TestCase):
         self.assertEqual(day03.day_03_part_1(day03.get_input_data('inputs/input_03_short.txt')), 4361)
 
     def test_day_03_part_1_full(self):
-        self.assertEqual(day03.day_03_part_1(day03.get_input_data('inputs/input_03.txt')), 0)
+        self.assertEqual(day03.day_03_part_1(day03.get_input_data('inputs/input_03.txt')), 525181)
 
 
 if __name__ == '__main__':

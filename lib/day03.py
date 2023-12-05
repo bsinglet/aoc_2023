@@ -38,13 +38,13 @@ def get_all_locations(puzzle_input) -> dict:
 
 def get_neighbors(x: int, y: int) -> list:
     return [(x-1, y),
-            (x+1, y),
             (x-1, y-1),
             (x-1, y+1),
-            (x+1, y-1),
-            (x+1, y+1),
             (x, y-1),
-            (x, y+1)]
+            (x, y+1),
+            (x+1, y),
+            (x+1, y-1),
+            (x+1, y+1)]
 
 
 def get_symbol_locations(puzzle_input: list) -> list:
