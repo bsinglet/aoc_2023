@@ -1,7 +1,7 @@
 #!/usr/bin/python
 __author__ = 'Benjamin M. Singleton'
 __date__ = '05 December 2023'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 import unittest
 from lib import day04
@@ -13,6 +13,12 @@ class TestDay04(unittest.TestCase):
 
     def test_day_04_part_1_full(self):
         self.assertEqual(day04.day_04_part_1(day04.get_input_data('inputs/input_04.txt')), 27845)
+    
+    def test_day_04_part_2_short(self):
+        self.assertEqual(day04.day_04_part_2(day04.get_input_data('inputs/input_04_short.txt')), 30)
+
+    def test_day_04_part_2_full(self):
+        self.assertEqual(day04.day_04_part_2(day04.get_input_data('inputs/input_04.txt')), 9496801)
     
 
 if __name__ == '__main__':
