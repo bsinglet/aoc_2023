@@ -1,7 +1,9 @@
 #!/usr/bin/python
 __author__ = 'Benjamin M. Singleton'
 __date__ = '06 December 2023'
-__version__ = '0.1.0'
+__version__ = '0.2.3'
+
+from tqdm import tqdm
 
 
 def get_input_data(filename: str) -> list:
@@ -33,10 +35,28 @@ def find_in_map(current_id: int, each_map: list) -> int:
     # if this isn't in the map, then it stays the same
     matching_id = current_id
     for each_line in each_map:
-        if current_id >= each_line[1] and current_id <= each_line[1] + each_line[2]:
+        if current_id >= each_line[1] and current_id < each_line[1] + each_line[2]:
             matching_id += each_line[0] - each_line[1]
             break
     return matching_id
+
+
+def find_in_map_2(current_id: int, each_map: list) -> int:
+    # if this isn't in the map, then it stays the same
+    matching_id = current_id
+    for each_line in each_map:
+        if current_id in range(each_line[0], each_line[0] + each_line[2]):
+            matching_id += each_line[1] - each_line[0]
+            break
+    return matching_id
+
+
+def is_in_seed_range(current_id: int, seed_ranges: list) -> bool:
+    for each_range in seed_ranges:
+        # print(f"Checking {current_id} against {each_range}")
+        if current_id in range(each_range[0], each_range[1]):
+            return True
+    return False
 
 
 def day_05_part_1(puzzle_input: list) -> int:
@@ -50,10 +70,28 @@ def day_05_part_1(puzzle_input: list) -> int:
     return min(seed_to_location.values())
 
 
+def day_05_part_2(puzzle_input: list) -> int:
+    parsed_maps = parse_maps(puzzle_input=puzzle_input)
+    seed_ranges = list()
+    for index in range(0, len(parsed_maps[0]), 2):
+        seed_ranges.append((parsed_maps[0][index], parsed_maps[0][index] + parsed_maps[0][index + 1]))
+    parsed_maps = parsed_maps[1:]
+    parsed_maps.reverse()
+    for each_location in tqdm(range(0, 25_000_000)):
+        current_id = each_location
+        for map_id in range(len(parsed_maps)):
+            current_id = find_in_map_2(current_id, parsed_maps[map_id])
+        if is_in_seed_range(current_id, seed_ranges):
+            return each_location
+    return None
+
+
 def main() -> None:
     puzzle_input = get_input_data("inputs/input_05.txt")
     part_1 = day_05_part_1(puzzle_input=puzzle_input)
     print(f"The lowest location number that corresponds to any of the initial seed numbers is {part_1}.")
+    part_2 = day_05_part_2(puzzle_input=puzzle_input)
+    print(f"The REAL (part 2) lowest location number that corresponds to any of the initial seed numbers is {part_2}.")
 
 
 if __name__ == '__main__':
