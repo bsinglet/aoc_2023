@@ -1,7 +1,7 @@
 #!/usr/bin/python
 __author__ = 'Benjamin M. Singleton'
 __date__ = '10 December 2023'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 import re
 
@@ -22,6 +22,22 @@ def parse_input(puzzle_input: list) -> list:
     return zip(times, distances)
 
 
+def get_number_from_string(s: str):
+    digits = list()
+    for index in range(s.find(':'), len(s)):
+        if s[index].isdecimal():
+            digits.append(s[index])
+    print(s)
+    print(digits)
+    return int(''.join(digits))
+
+
+def parse_input_2(puzzle_input: list) -> tuple:
+    time = get_number_from_string(puzzle_input[0])
+    distance = get_number_from_string(puzzle_input[1])
+    return (time, distance)
+
+
 def generate_wins(time: int, record_distance: int) -> int:
     wins = 0
     for speed in range(1, time):
@@ -36,13 +52,21 @@ def day_06_part_1(puzzle_input: list) -> int:
     time_distances = parse_input(puzzle_input)
     for time, record_distance in time_distances:
         ways_to_beat *= generate_wins(time, record_distance)
-    return ways_to_beat    
+    return ways_to_beat
+
+
+def day_06_part_2(puzzle_input: list) -> int:
+    time, record_distance = parse_input_2(puzzle_input)
+    ways_to_beat = generate_wins(time, record_distance)
+    return ways_to_beat
 
 
 def main() -> None:
     puzzle_input = get_input_data("inputs/input_06.txt")
     part_1 = day_06_part_1(puzzle_input=puzzle_input)
     print(f"If you multiply these numbers together you get {part_1}.")
+    part_2 = day_06_part_2(puzzle_input=puzzle_input)
+    print(f"If you multiply these numbers together you get {part_2}.")
 
 
 if __name__ == '__main__':
