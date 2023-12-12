@@ -20,3 +20,4 @@ Days completed so far:
 - [Day 04](https://github.com/bsinglet/aoc_2023/blob/main/lib/day04.py)
 - [Day 05](https://github.com/bsinglet/aoc_2023/blob/main/lib/day05.py)
 - [Day 06](https://github.com/bsinglet/aoc_2023/blob/main/lib/day06.py)
+- [Day 07](https://github.com/bsinglet/aoc_2023/blob/main/lib/day07.py)
